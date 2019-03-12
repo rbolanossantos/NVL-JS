@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+
+</head>
+<title>Ejercicio 1</title>
+<script type="application/javascript">
+var impares = [];
+var pares = [];
+//Opcion 1
+function parOImpar()
+{
+	for (var i = 0;i<50;i++)
+	{
+		var a = Math.floor((Math.random() * 100) + 1);
+		if (a%2 == 0)
+		{
+			pares.push(a);
+		}
+		else
+		{
+			impares.push(a);
+		}
+	}
+}
+
+//Opcion 2
+var par = false;
+
+for (var i = 0;i<50;i++)
+{
+	var a = Math.floor((Math.random() * 100) + 1);
+
+	esPar(a)
+
+	if (!par)
+	{
+		impares.push(a);
+	}
+}
+
+function esPar(n)
+{
+	if (n%2 == 0)
+	{
+		pares.push(a);
+		par = true;
+	}
+}
+
+</script>
+<body>
+
+</body> 
+</html>
