@@ -1,0 +1,12 @@
+En este ejercicio he utilizado un selector para poder elegir que tipo
+de formulario se va a ir creando.
+Después se crea un label que será el título y .name de ese apartado; y
+en el caso de slector, checkbox y radio aparecerá un textarea en el que
+se introducen los datos para después crear un array con ellos y
+convertirlos en las posibles opciones de cada uno.
+
+El boton no ha posido ser tipo submit porque me refrescaba la página y no
+se guardaban los formularios así que es onclick.
+He tenido algun problema añadiendo el texto tanto al checkbox como al
+radio pero al final he decidido crear un label para cada apartado y así
+he resuelto el problema.
