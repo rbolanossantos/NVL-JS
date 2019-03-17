@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    
+</head>
+<title>Ejercicio Final</title>
+<body>
+    <h1>Crear formulario</h1>
+    <div id="engine">
+        <label>Selecciona el tipo de elemento: </label>
+        <select id="selType" name="selType" onchange="checkType(this)">
+            <option value="texto">Texto</option>
+            <option value="numero">Numero</option>
+            <option value="email">E-mail</option>
+            <option value="selector">Selector</option>
+            <option value="check">CheckBox</option>
+            <option value="radio">Radio</option>
+        </select>
+        <br>
+        <label>Label del elemento</label>
+        <input type="text" placeholder="Escriba el nombre del apartado" id="labelText" name="labelText"/>
+        <br>
+        <div style="display: none" id="optionListContainer">
+            <label>Opciones</label>
+            <textarea placeholder="Escriba cada opcion en una linea" id="optionList" name="optionList"></textarea>
+        </div>
+        <br>
+        <button onclick="addElement()">Enviar</button>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h2>Dinamico</h2>
+        <form id="dynamicForm">
+
+        </form>
+    </div>
+
+
+    <script>
+            function checkType(selType)
+            {
+                var optionListContainer = document.getElementById("optionListContainer");
+                if (selType.value === "selector" || selType.value === "check" || selType.value === "radio")
+                {
+                    optionListContainer.style.display="inline-block";
+                }
+                else
+                {
+                    optionListContainer.style.display = "none";
+                }
+            }
+    
+            function addElement()
+            {
+                var dynamicForm = document.getElementById("dynamicForm");
+                var selType = document.getElementById("selType");
+                var labelText = document.getElementById("labelText");
+                var optionList = document.getElementById("optionList");
+                var arrayOptionList = optionList.value.split("\n");
+                var newLabel = document.createElement("label");
+                newLabel.innerText =(labelText.value + ": ");
+                var newElement;
+                var br = document.createElement("br");
+                var container = document.createElement("div");
+                container.appendChild(newLabel);
+    
+                switch(selType.value)
+                {
+                    case "texto": newElement = document.createElement("input");
+                    newElement.type = "text";
+                    container.appendChild(newElement);
+                    break;
+    
+                    case "numero": newElement = document.createElement("input");
+                    newElement.type = "number";
+                    container.appendChild(newElement);
+                    break;
+
+                    case "email": newElement = document.createElement("input");
+                    newElement.type = "email";
+                    newElement.name = labelText;
+                    container.appendChild(newElement);
+                    break;
+    
+                    case "selector": newElement = document.createElement("select");
+                    for ( var i = 0; i<arrayOptionList.length; i++)
+                    {
+                        var option = document.createElement("option");
+                        option.value = arrayOptionList[i];
+                        option.text = arrayOptionList[i];
+                        newElement.appendChild(option);
+                    }
+                    container.appendChild(newElement);
+                    break;
+
+                    case "check": 
+                    for ( var i = 0; i<arrayOptionList.length; i++)
+                    {
+                        container.appendChild(br);
+                        newElement = document.createElement("input");
+                        newElement.type = "checkbox";
+                        newElement.name = labelText;
+                        newElement.value = arrayOptionList[i];
+                        var nuevoLabel = document.createElement("label");
+                        nuevoLabel.innerText = arrayOptionList[i];
+                        //newElement.textContent = arrayOptionList[i];
+                        
+                        container.appendChild(br);
+                        container.appendChild(nuevoLabel);
+                        container.appendChild(newElement);
+                    }
+                    break;
+
+                    case "radio": 
+                    for ( var i = 0; i<arrayOptionList.length; i++)
+                    {
+                        container.appendChild(br);
+                        newElement = document.createElement("input");
+                        newElement.type = "radio";
+                        newElement.name = labelText;
+                        newElement.value = arrayOptionList[i];
+                        var nuevoLabel = document.createElement("label");
+                        nuevoLabel.innerText = arrayOptionList[i];
+                        //newElement.textContent = arrayOptionList[i];
+                        
+                        container.appendChild(br);
+                        container.appendChild(nuevoLabel);
+                        container.appendChild(newElement);
+                    }
+                    break;
+                }
+                //container.appendChild(br);
+                dynamicForm.appendChild(container);
+            }
+        </script>
+</body> 
+</html>
